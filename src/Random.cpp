@@ -1,6 +1,7 @@
 #include "Random.h"
 #include <cmath>
-#include <iostream>
+
+# define MATH_PI           3.14159265358979323846  /* pi */
 
 Random::Random()
 {
@@ -69,7 +70,18 @@ float Random::MoroInverseCumulativeNormal(float x)
             return -t;
         }
     }
+}
 
-
-    return c[1];
+float Random::CumulativeNormal(float x)
+//Computes the cumulative normal function
+{
+    if(x >= 0)
+    {
+        float k = 1/(1+0.2316419*x);
+        return(1 - 1/std::sqrt(2*MATH_PI) * std::exp(- std::pow(x,2)/2) * k*(0.319381530 + k*(-0.356563782 + k*(1.781477937 + k*(-1.821255978 + 1.330274429*k)))));
+    }
+    else
+    {
+        return 1-CumulativeNormal(-x);
+    }
 }

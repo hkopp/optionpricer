@@ -8,6 +8,7 @@ class Random
         Random();
         ~Random();
         static float MoroInverseCumulativeNormal(float);
+        static float CumulativeNormal(float);
     protected:
     private:
 };
