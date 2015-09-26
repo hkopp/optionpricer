@@ -1,4 +1,5 @@
 #include <iostream>
+#include "include/Forward.h"
 #include "include/Random.h"
 
 using namespace std;
@@ -14,5 +15,7 @@ int main()
     cout << Random::CumulativeNormal(2) << endl;
     cout << Random::CumulativeNormal(3) << endl;
     cout << Random::CumulativeNormal(10) << endl;
+    Forward f (1.0,2.0,3.0,4.0,5.0,1.0);
+    cout << f.GetPrice() << endl;
     return 0;
 }

@@ -34,8 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/AbstractDerivative.h" />
+		<Unit filename="include/Forward.h" />
 		<Unit filename="include/Random.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AbstractDerivative.cpp" />
+		<Unit filename="src/Forward.cpp" />
 		<Unit filename="src/Random.cpp" />
 		<Extensions>
 			<code_completion />
