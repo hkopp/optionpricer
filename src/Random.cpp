@@ -3,16 +3,6 @@
 
 # define MATH_PI           3.14159265358979323846  /* pi */
 
-Random::Random()
-{
-    //ctor
-}
-
-Random::~Random()
-{
-    //dtor
-}
-
 float Random::MoroInverseCumulativeNormal(float x)
 {
     //Computes the inverse cumulative normal function with Moros method
