@@ -13,7 +13,7 @@ class AbstractDerivative
         float S; //spot
         float sigma; //volatility
         virtual float GetPrice() = 0; //pure virtual function which has to be implemented
-        virtual float Payoff(float S) = 0;
+        virtual float Payoff(float currentspot) = 0;
     protected:
     private:
 };

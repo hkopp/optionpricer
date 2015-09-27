@@ -21,7 +21,7 @@ float Forward::GetPrice()
     return std::exp(-r*T)*(std::exp((r-d)*T)*S - K);
 }
 
-float Forward::Payoff(float S)
+float Forward::Payoff(float currentspot)
 {
-    return S; //at expiry, a forward pays the price of the underlying
+    return currentspot; //at expiry, a forward pays the price of the underlying
 }
