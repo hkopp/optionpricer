@@ -15,7 +15,7 @@ int main()
     cout << Random::CumulativeNormal(2) << endl;
     cout << Random::CumulativeNormal(3) << endl;
     cout << Random::CumulativeNormal(10) << endl;
-    Forward f (1.0,2.0,3.0,4.0,5.0,1.0);
-    cout << f.GetPrice() << endl;
+    Forward f (1.0);
+    cout << f.GetPrice(2.0,3.0,4.0,5.0,1.0) << endl;
     return 0;
 }

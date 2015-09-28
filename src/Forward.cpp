@@ -6,19 +6,14 @@ Forward::Forward()
     //ctor
 }
 
-Forward::Forward(float nT, float nr, float nd, float nK, float nS, float nsigma)
+Forward::Forward(float strikeK)
 {
-    T = nT;
-    r = nr;
-    d = nd;
-    K = nK;
-    S = nS;
-    sigma = nsigma;
+    this->strikeK = strikeK;
 }
 
-float Forward::GetPrice()
+float Forward::GetPrice(float expiryT, float rater, float dividend, float spot, float sigma)
 {
-    return std::exp(-r*T)*(std::exp((r-d)*T)*S - K);
+    return std::exp(-rater*expiryT)*(std::exp((rater-dividend)*expiryT)*spot - strikeK);
 }
 
 float Forward::Payoff(float currentspot)
