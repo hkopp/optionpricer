@@ -11,7 +11,7 @@ Forward::Forward(float strikeK)
     this->strikeK = strikeK;
 }
 
-float Forward::GetPrice(float expiryT, float rater, float dividend, float spot, float sigma)
+float Forward::GetPrice(float expiryT, float rater, float dividend, float spot, float sigma) const
 {
     return std::exp(-rater*expiryT)*(std::exp((rater-dividend)*expiryT)*spot - strikeK);
 }

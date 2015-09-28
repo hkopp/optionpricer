@@ -6,7 +6,7 @@ class AbstractDerivative
 {
     public:
         AbstractDerivative();
-        virtual float GetPrice(float expiryT, float rater, float dividend, float spot, float sigma) = 0; //pure virtual function which has to be implemented
+        virtual float GetPrice(float expiryT, float rater, float dividend, float spot, float sigma) const = 0; //pure virtual function which has to be implemented
         virtual float Payoff(float currentspot) = 0;
     protected:
     private:

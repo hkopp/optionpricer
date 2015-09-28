@@ -9,7 +9,7 @@ class Forward : public AbstractDerivative
     public:
         Forward();
         Forward(float strikeK);
-        float GetPrice(float expiryT, float rater, float dividend, float spot, float sigma);
+        float GetPrice(float expiryT, float rater, float dividend, float spot, float sigma) const;
         float Payoff(float currentspot);
     protected:
     private:
