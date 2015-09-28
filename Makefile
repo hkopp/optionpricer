@@ -6,16 +6,21 @@ CPPFLAGS=-Wall -Iinclude
 #Remember $@ = target, $< = first dependency
 
 Random.o: src/Random.cpp
+	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c src/Random.cpp -o obj/$@
 
 AbstractDerivative.o: src/AbstractDerivative.cpp
+	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c src/AbstractDerivative.cpp -o obj/$@
 
 Forward.o: src/Forward.cpp
+	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c src/Forward.cpp -o obj/$@
 
-main.o: obj/Random.o obj/Forward.o obj/AbstractDerivative.o
-	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o -o obj/$@
+main.o: Random.o Forward.o AbstractDerivative.o
+	mkdir -p build
+	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o -o build/$@
 
 clean:
-	rm -f obj/*.o
+	@echo " Cleaning...";
+	rm -rf obj build
