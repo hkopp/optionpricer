@@ -5,8 +5,8 @@
 class Random
 {
     public:
-        static float MoroInverseCumulativeNormal(float);
-        static float CumulativeNormal(float);
+        static double MoroInverseCumulativeNormal(double);
+        static double CumulativeNormal(double);
     protected:
     private:
 };

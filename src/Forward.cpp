@@ -6,17 +6,17 @@ Forward::Forward()
     //ctor
 }
 
-Forward::Forward(float strikeK)
+Forward::Forward(double strikeK)
 {
     this->strikeK = strikeK;
 }
 
-float Forward::GetPrice(float expiryT, float rater, float dividend, float spot, float sigma) const
+double Forward::GetPrice(double expiryT, double rater, double dividend, double spot, double sigma) const
 {
     return std::exp(-rater*expiryT)*(std::exp((rater-dividend)*expiryT)*spot - strikeK);
 }
 
-float Forward::Payoff(float currentspot)
+double Forward::Payoff(double currentspot)
 {
     return currentspot; //at expiry, a forward pays the price of the underlying
 }
