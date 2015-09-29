@@ -17,9 +17,13 @@ Forward.o: src/Forward.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c src/Forward.cpp -o obj/$@
 
-main.o: Random.o Forward.o AbstractDerivative.o
+EuropeanCallOption.o: src/EuropeanCallOption.cpp
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c src/EuropeanCallOption.cpp -o obj/$@
+
+main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o
 	mkdir -p build
-	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o -o build/$@
+	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o obj/EuropeanCallOption.o -o build/$@
 
 clean:
 	@echo "Cleaning...";

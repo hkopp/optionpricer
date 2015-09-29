@@ -1,4 +1,5 @@
 #include <iostream>
+#include "include/EuropeanCallOption.h"
 #include "include/Forward.h"
 #include "include/Random.h"
 
@@ -20,5 +21,8 @@ int main()
     cout << "Price of a forward" << endl;
     Forward f (1.0);
     cout << f.GetPrice(2.0,3.0,4.0,5.0,1.0) << endl;
+    cout << "Price of a european call option" << endl;
+    EuropeanCallOption c (1.0);
+    cout << c.GetPrice(2.0,3.0,4.0,5.0,1.0) << endl;
     return 0;
 }
