@@ -1,4 +1,4 @@
-all: main.o
+all: main.o doc
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude
@@ -22,5 +22,11 @@ main.o: Random.o Forward.o AbstractDerivative.o
 	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o -o build/$@
 
 clean:
-	@echo " Cleaning...";
-	rm -rf obj build
+	@echo "Cleaning...";
+	rm -rf obj build doc
+
+doc: doxy.conf
+	@echo "Generating documentation...";
+	mkdir -p doc
+	doxygen doxy.conf
+	cd doc/latex/ && make
