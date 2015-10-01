@@ -10,7 +10,7 @@ class Forward : public AbstractDerivative
         Forward();
         Forward(double strikeK);
         double GetPrice(double expiryT, double rater, double dividend, double spot, double sigma) const;
-        double Payoff(double currentspot);
+        double Payoff(double currentspot) const;
     protected:
     private:
         double strikeK;

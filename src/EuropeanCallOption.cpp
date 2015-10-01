@@ -23,7 +23,7 @@ double EuropeanCallOption::GetPrice(double expiryT, double rater, double dividen
     
 }
 
-double EuropeanCallOption::Payoff(double currentspot)
+double EuropeanCallOption::Payoff(double currentspot) const
 {
 	return std::max(0.0,currentspot-strikeK);
 }

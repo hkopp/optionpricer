@@ -27,7 +27,7 @@ class AbstractDerivative
          * \param currentspot The current spot price of the underlying
          * \return the payoff of the derivative
          */
-        virtual double Payoff(double currentspot) = 0;
+        virtual double Payoff(double currentspot) const = 0;
     protected:
     private:
 };

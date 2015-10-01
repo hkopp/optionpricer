@@ -12,7 +12,7 @@ class EuropeanCallOption : public AbstractDerivative
         //! constructs a European Call option with a strike price
         EuropeanCallOption(double strikeK);
         double GetPrice(double expiryT, double rater, double dividend, double spot, double sigma) const;
-        double Payoff(double currentspot);
+        double Payoff(double currentspot) const;
     protected:
     private:
         double strikeK;
