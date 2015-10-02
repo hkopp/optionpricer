@@ -1,7 +1,6 @@
 #include "EuropeanCallOption.h"
 #include "Random.h"
 #include <cmath>
-#include <algorithm>
 
 /*EuropeanCallOption::EuropeanCallOption()
 {
@@ -25,5 +24,5 @@ double EuropeanCallOption::GetPrice(double expiryT, double rater, double dividen
 
 double EuropeanCallOption::Payoff(double currentspot) const
 {
-	return std::max(0.0,currentspot-strikeK);
+	return currentspot-strikeK > 0.0 ? currentspot-strikeK : 0;
 }
