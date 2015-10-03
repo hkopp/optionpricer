@@ -75,3 +75,10 @@ double Random::CumulativeNormal(double x)
         return 1-CumulativeNormal(-x);
     }
 }
+
+double Random::GetGaussian()
+{
+	double uniform = double(rand())/RAND_MAX;
+	return MoroInverseCumulativeNormal(uniform);
+
+}

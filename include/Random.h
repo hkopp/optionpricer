@@ -13,6 +13,9 @@ class Random
 
         //! The cumulative normal function
         static double CumulativeNormal(double);
+
+        //! Returns a normally distributed random variable
+        static double GetGaussian();
     protected:
     private:
 };
