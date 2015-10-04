@@ -2,24 +2,25 @@ all: main.o doc
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude
+SRCDIR=src
 
 #Remember $@ = target, $< = first dependency
 
 Random.o: src/Random.cpp
 	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c src/Random.cpp -o obj/$@
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Random.cpp -o obj/$@
 
-AbstractDerivative.o: src/AbstractDerivative.cpp
+AbstractDerivative.o: $(SRCDIR)/AbstractDerivative.cpp
 	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c src/AbstractDerivative.cpp -o obj/$@
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/AbstractDerivative.cpp -o obj/$@
 
 Forward.o: src/Forward.cpp
 	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c src/Forward.cpp -o obj/$@
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Forward.cpp -o obj/$@
 
-EuropeanCallOption.o: src/EuropeanCallOption.cpp
+EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp
 	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c src/EuropeanCallOption.cpp -o obj/$@
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
 main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o
 	mkdir -p build
