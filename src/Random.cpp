@@ -1,5 +1,6 @@
 #include "Random.h"
 #include <cmath>
+#include <stdlib.h> //rand & RAND_MAX
 
 # define MATH_PI           3.14159265358979323846  /* pi */
 
