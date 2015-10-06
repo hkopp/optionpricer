@@ -8,12 +8,13 @@
 }
 */
 
-EuropeanCallOption::EuropeanCallOption(double strikeK)
+EuropeanCallOption::EuropeanCallOption(double strikeK, double expiryT)
 {
     this->strikeK = strikeK;
+    this->expiryT = expiryT;
 }
 
-double EuropeanCallOption::GetPrice(double expiryT, double rater, double dividend, double spot, double sigma) const
+double EuropeanCallOption::GetPrice(double rater, double dividend, double spot, double sigma) const
 {
 	double d1=(std::log(spot/strikeK)+(rater-dividend+1/2*std::pow(sigma,2))*expiryT)/(sigma*std::sqrt(expiryT));
 	double d2=d1-sigma*std::sqrt(expiryT);
@@ -25,4 +26,9 @@ double EuropeanCallOption::GetPrice(double expiryT, double rater, double dividen
 double EuropeanCallOption::Payoff(double currentspot) const
 {
 	return currentspot-strikeK > 0.0 ? currentspot-strikeK : 0;
+}
+
+double EuropeanCallOption::GetExpiry() const
+{
+	return expiryT;
 }
