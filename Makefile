@@ -22,9 +22,13 @@ EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
-main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o
+MonteCarlo.o: src/MonteCarlo.cpp
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MonteCarlo.cpp -o obj/$@
+
+main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o MonteCarlo.o
 	mkdir -p build
-	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o obj/EuropeanCallOption.o -o build/$@
+	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
 
 clean:
 	@echo "Cleaning...";
