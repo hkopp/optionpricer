@@ -1,8 +1,11 @@
-all: main.o doc
+all: main.o doc tests
+tests: test_Forward.o
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude
 SRCDIR=src
+TESTBINDIR=bin/test
+#where the testing binaries will end up
 
 #Remember $@ = target, $< = first dependency
 
@@ -29,6 +32,11 @@ MonteCarlo.o: src/MonteCarlo.cpp
 main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o MonteCarlo.o
 	mkdir -p build
 	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
+
+test_Forward.o: test/test_Forward.cpp Forward.o AbstractDerivative.o
+	mkdir -p $(TESTBINDIR)
+	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o obj/AbstractDerivative.o
+	./$(TESTBINDIR)/$@
 
 clean:
 	@echo "Cleaning...";
