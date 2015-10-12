@@ -4,3 +4,8 @@ AbstractDerivative::AbstractDerivative()
 {
     //ctor
 }
+
+AbstractDerivative::~AbstractDerivative()
+{
+    //dtor
+}
