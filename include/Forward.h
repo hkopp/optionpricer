@@ -7,8 +7,6 @@
 class Forward : public AbstractDerivative
 {
     public:
-        Forward();
-
         //! constructs a Forward with a strike price and expiry time
         Forward(double strikeK, double expiryT);
         //! returns the analytical price of a forward

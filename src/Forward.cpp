@@ -1,11 +1,6 @@
 #include "Forward.h"
 #include <cmath>
 
-Forward::Forward()
-{
-    //ctor
-}
-
 Forward::Forward(double strikeK, double expiryT)
 {
     this->strikeK = strikeK;

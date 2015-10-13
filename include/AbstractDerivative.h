@@ -8,7 +8,6 @@
 class AbstractDerivative
 {
     public:
-        AbstractDerivative();
         virtual ~AbstractDerivative();
 
         //! returns the analytical Black-Scholes price of the asset

@@ -7,8 +7,6 @@
 class EuropeanCallOption : public AbstractDerivative
 {
     public:
-        //EuropeanCallOption();
-
         //! constructs a European Call option with a strike price and expiry time
         EuropeanCallOption(double strikeK, double expiryT);
         //! returns the analytical price of the call option

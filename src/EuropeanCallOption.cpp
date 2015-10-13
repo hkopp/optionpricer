@@ -2,12 +2,6 @@
 #include "Random.h"
 #include <cmath>
 
-/*EuropeanCallOption::EuropeanCallOption()
-{
-    //ctor
-}
-*/
-
 EuropeanCallOption::EuropeanCallOption(double strikeK, double expiryT)
 {
     this->strikeK = strikeK;
