@@ -25,6 +25,10 @@ EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
+Bond.o: $(SRCDIR)/Bond.cpp AbstractDerivative.o
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
+
 MonteCarlo.o: src/MonteCarlo.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MonteCarlo.cpp -o obj/$@
