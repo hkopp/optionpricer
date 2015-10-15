@@ -2,7 +2,7 @@ all: main.o doc tests
 tests: test_Forward.o
 
 CC=g++
-CPPFLAGS=-Wall -Iinclude
+CPPFLAGS=-Wall -Iinclude -std=c++11
 SRCDIR=src
 TESTBINDIR=bin/test
 #where the testing binaries will end up
@@ -13,19 +13,15 @@ Random.o: src/Random.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Random.cpp -o obj/$@
 
-AbstractDerivative.o: $(SRCDIR)/AbstractDerivative.cpp
-	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c $(SRCDIR)/AbstractDerivative.cpp -o obj/$@
-
-Forward.o: src/Forward.cpp
+Forward.o: $(SRCDIR)/Forward.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Forward.cpp -o obj/$@
 
-EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp
+EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp Random.o
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
-Bond.o: $(SRCDIR)/Bond.cpp AbstractDerivative.o
+Bond.o: $(SRCDIR)/Bond.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
 
@@ -33,13 +29,13 @@ MonteCarlo.o: src/MonteCarlo.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MonteCarlo.cpp -o obj/$@
 
-main.o: Random.o Forward.o AbstractDerivative.o EuropeanCallOption.o MonteCarlo.o
+main.o: Random.o Forward.o EuropeanCallOption.o MonteCarlo.o
 	mkdir -p build
-	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/AbstractDerivative.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
+	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
 
-test_Forward.o: test/test_Forward.cpp Forward.o AbstractDerivative.o
+test_Forward.o: test/test_Forward.cpp Forward.o
 	mkdir -p $(TESTBINDIR)
-	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o obj/AbstractDerivative.o
+	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o
 	./$(TESTBINDIR)/$@
 
 clean:
