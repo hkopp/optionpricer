@@ -21,7 +21,11 @@ EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp Random.o
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
-Bond.o: $(SRCDIR)/Bond.cpp
+DigitalCallOption.o: $(SRCDIR)/DigitalCallOption.cpp Random.o
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/DigitalCallOption.cpp -o obj/$@
+	
+Bond.o: $(SRCDIR)/Bond.cpp 
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
 
@@ -33,7 +37,7 @@ main.o: Random.o Forward.o EuropeanCallOption.o MonteCarlo.o
 	mkdir -p build
 	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
 
-test_Forward.o: test/test_Forward.cpp Forward.o
+test_Forward.o: test/test_Forward.cpp Forward.o 
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o
 	./$(TESTBINDIR)/$@
