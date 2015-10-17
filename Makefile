@@ -1,5 +1,5 @@
 all: main.o doc tests
-tests: test_Forward.o
+tests: test_Forward.o test_EuropeanCallOption.o
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude -std=c++11
@@ -40,6 +40,11 @@ main.o: Random.o Forward.o EuropeanCallOption.o MonteCarlo.o
 test_Forward.o: test/test_Forward.cpp Forward.o 
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o
+	./$(TESTBINDIR)/$@
+
+test_EuropeanCallOption.o: test/test_EuropeanCallOption.cpp EuropeanCallOption.o Random.o
+	mkdir -p $(TESTBINDIR)
+	$(CC) $(CPPFLAGS) test/test_EuropeanCallOption.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/EuropeanCallOption.o obj/Random.o
 	./$(TESTBINDIR)/$@
 
 clean:
