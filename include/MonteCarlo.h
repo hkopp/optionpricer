@@ -9,7 +9,7 @@ class MonteCarlo
     public:
         MonteCarlo();
 
-        //! returns
+        //! simulates the price of a derivative
         /*!
          * The inputs are the parameters needed in the Black-Scholes model, namely
          * \param Derivative The Derivative to price
@@ -19,7 +19,7 @@ class MonteCarlo
          * \param dividend The dividend rate
          * \param spot The spot price of the underlying
          * \param sigma The Volatility sigma
-         * \return the analytical price of the derivative
+         * \return the price of the derivative computed with Monte Carlo method
          */
         static double SimulatePrice(const AbstractDerivative& Derivative, unsigned int numberRuns, double rater, double dividend, double spot, double sigma);
     protected:
