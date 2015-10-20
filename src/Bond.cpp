@@ -7,12 +7,12 @@ Bond::Bond(double strikeK, double expiryT)
     this->expiryT = expiryT;
 }
 
-double Bond::GetPrice(double rater, double dividend, double spot, double sigma) const
+double Bond::GetPrice(double rater) const
 {
 	return strikeK*std::exp(-rater*expiryT);
 }
 
-double Bond::Payoff(double currentspot) const
+double Bond::Payoff() const
 {
 	return strikeK;
 }

@@ -1,14 +1,12 @@
 #ifndef BOND_H
 #define BOND_H
 
-#include "AbstractDerivative.h"
-
 class Bond : public AbstractDerivative
 {
     public:
 		Bond(double strikeK, double expiryT);
-        double GetPrice(double rater, double dividend, double spot, double sigma) const;
-        double Payoff(double currentspot) const;
+        double GetPrice(double rater) const;
+        double Payoff() const;
         double GetExpiry() const;
     protected:
     private:
