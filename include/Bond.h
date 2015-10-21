@@ -1,7 +1,7 @@
 #ifndef BOND_H
 #define BOND_H
 
-class Bond : public AbstractDerivative
+class Bond
 {
     public:
 		Bond(double strikeK, double expiryT);
