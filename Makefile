@@ -21,10 +21,14 @@ EuropeanCallOption.o: $(SRCDIR)/EuropeanCallOption.cpp Random.o
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanCallOption.cpp -o obj/$@
 
+EuropeanPutOption.o: $(SRCDIR)/EuropeanPutOption.cpp Random.o
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/EuropeanPutOption.cpp -o obj/$@
+
 DigitalCallOption.o: $(SRCDIR)/DigitalCallOption.cpp Random.o
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/DigitalCallOption.cpp -o obj/$@
-	
+
 Bond.o: $(SRCDIR)/Bond.cpp 
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
