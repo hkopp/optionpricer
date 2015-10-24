@@ -1,5 +1,5 @@
 all: main.o doc tests
-tests: test_Forward.o test_EuropeanCallOption.o test_DigitalCallOption.o
+tests: test_Forward.o test_EuropeanCallOption.o test_DigitalCallOption.o test_MonteCarlo.o
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude -std=c++11
@@ -54,6 +54,11 @@ test_EuropeanCallOption.o: test/test_EuropeanCallOption.cpp EuropeanCallOption.o
 test_DigitalCallOption.o: test/test_DigitalCallOption.cpp DigitalCallOption.o
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_DigitalCallOption.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/DigitalCallOption.o obj/Random.o
+	./$(TESTBINDIR)/$@
+
+test_MonteCarlo.o: test/test_MonteCarlo.cpp MonteCarlo.o Random.o EuropeanCallOption.o EuropeanPutOption.o
+	mkdir -p $(TESTBINDIR)
+	$(CC) $(CPPFLAGS) test/test_MonteCarlo.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/MonteCarlo.o obj/Random.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o
 	./$(TESTBINDIR)/$@
 
 clean:
