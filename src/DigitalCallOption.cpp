@@ -16,7 +16,7 @@ double DigitalCallOption::GetPrice(double rater, double dividend, double spot, d
 
 double DigitalCallOption::Payoff(double currentspot) const
 {
-    return currentspot > strikeK ? 1 : 0; //at expiry, a forward pays the price of the underlying
+    return currentspot > strikeK ? 1 : 0;
 }
 double DigitalCallOption::GetExpiry() const
 {
