@@ -29,7 +29,11 @@ DigitalCallOption.o: $(SRCDIR)/DigitalCallOption.cpp Random.o
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/DigitalCallOption.cpp -o obj/$@
 
-Bond.o: $(SRCDIR)/Bond.cpp 
+DigitalPutOption.o: $(SRCDIR)/DigitalPutOption.cpp Random.o
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/DigitalPutOption.cpp -o obj/$@
+
+Bond.o: $(SRCDIR)/Bond.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
 
