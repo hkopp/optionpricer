@@ -20,7 +20,7 @@ double EuropeanPutOption::GetPrice(double rater, double dividend, double spot, d
 
 double EuropeanPutOption::Payoff(double currentspot) const
 {
-	return currentspot-strikeK > 0.0 ? currentspot-strikeK : 0;
+	return currentspot > strikeK ? 0 : currentspot-strikeK;
 }
 
 double EuropeanPutOption::GetExpiry() const
