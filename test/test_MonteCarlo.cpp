@@ -18,8 +18,8 @@ BOOST_AUTO_TEST_CASE(MC_EuropeanCallOption)
 
 BOOST_AUTO_TEST_CASE(MC_EuropeanPutOption)
 {
-	EuropeanCallOption p (50.0, 10.0);
-	double analyticprice = p.GetPrice(0.03, 0.01, 50.0, 0.03);
-	double simulatedprice = MonteCarlo::SimulatePrice(p, 1000, 0.03, 0.01, 50.0, 0.03);
+	EuropeanPutOption p (50.0, 10.0);
+	double analyticprice = p.GetPrice(0.03, 0.01, 30.0, 0.03);
+	double simulatedprice = MonteCarlo::SimulatePrice(p, 1000, 0.03, 0.01, 30.0, 0.03);
     BOOST_CHECK_CLOSE(analyticprice, simulatedprice, accuracy);
 }
