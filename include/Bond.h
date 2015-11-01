@@ -4,13 +4,13 @@
 class Bond
 {
     public:
-		Bond(double strikeK, double expiryT);
+		Bond(double facevalue, double expiryT);
         double GetPrice(double rater) const;
         double Payoff() const;
         double GetExpiry() const;
     protected:
     private:
-        double strikeK;
+        double facevalue;
         double expiryT;
 };
 

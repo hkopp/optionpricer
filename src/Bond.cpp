@@ -1,20 +1,20 @@
 #include "Bond.h"
 #include <cmath>
 
-Bond::Bond(double strikeK, double expiryT)
+Bond::Bond(double facevalue, double expiryT)
 {
-    this->strikeK = strikeK;
+    this->facevalue = facevalue;
     this->expiryT = expiryT;
 }
 
 double Bond::GetPrice(double rater) const
 {
-	return strikeK*std::exp(-rater*expiryT);
+	return facevalue*std::exp(-rater*expiryT);
 }
 
 double Bond::Payoff() const
 {
-	return strikeK;
+	return facevalue;
 }
 
 double Bond::GetExpiry() const
