@@ -11,10 +11,12 @@ a Monte-Carlo pricing scheme which is used for validation.
 
 #Code organization
 In src/ we have the sources, in include/ the headers. The tests are
-located in test. Each unittest is named test_<classname>.
+located in the folder `test`. Each unittest is named `test_<classname>`.
 
 "make all" compiles everything and runs the tests.
 "make tests" runs the tests.
+"make doc" builds the documentation.
 
 #Dependencies
 libboost-test, for running the tests.
+doxygen, for creating the documentation
