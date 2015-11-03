@@ -45,7 +45,7 @@ main.o: Random.o Forward.o EuropeanCallOption.o MonteCarlo.o
 	mkdir -p build
 	$(CC) $(CPPFLAGS) main.cpp obj/Forward.o obj/Random.o obj/EuropeanCallOption.o obj/MonteCarlo.o -o build/$@
 
-test_Forward.o: test/test_Forward.cpp Forward.o 
+test_Forward.o: test/test_Forward.cpp Forward.o
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_Forward.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Forward.o
 	./$(TESTBINDIR)/$@
