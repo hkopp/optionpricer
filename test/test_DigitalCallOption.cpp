@@ -1,5 +1,5 @@
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE EuropeanCallOption
+#define BOOST_TEST_MODULE DigitalCallOption
 #include "../include/DigitalCallOption.h"
 #include <boost/test/floating_point_comparison.hpp>
 #include <boost/test/unit_test.hpp>

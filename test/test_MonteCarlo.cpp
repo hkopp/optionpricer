@@ -1,5 +1,5 @@
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Forward
+#define BOOST_TEST_MODULE MonteCarlo
 #include "MonteCarlo.h"
 #include "EuropeanCallOption.h"
 #include "EuropeanPutOption.h"
