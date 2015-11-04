@@ -30,3 +30,11 @@ BOOST_AUTO_TEST_CASE(Monotony_Strike)
 	BOOST_CHECK(c2.Payoff(50.0) >= c3.Payoff(50.0));
 	BOOST_CHECK(c3.Payoff(50.0) >= c4.Payoff(50.0));
 }
+
+BOOST_AUTO_TEST_CASE(Monotony_Volatility)
+//The price of a call option should be monotonously increasing with volatility
+{
+	EuropeanCallOption c1 (30.0, 10.0);
+	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.03) <= c1.GetPrice(0.03, 0.01, 50.0, 0.06));
+	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.1) <= c1.GetPrice(0.03, 0.01, 50.0, 0.4));
+}
