@@ -37,7 +37,11 @@ Bond.o: $(SRCDIR)/Bond.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Bond.cpp -o obj/$@
 
-MonteCarlo.o: src/MonteCarlo.cpp
+MersenneTwisterRNG.o: $(SRCDIR)/MersenneTwisterRNG.cpp
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MersenneTwisterRNG.cpp -o obj/$@
+
+MonteCarlo.o: $(SRCDIR)/MonteCarlo.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MonteCarlo.cpp -o obj/$@
 
