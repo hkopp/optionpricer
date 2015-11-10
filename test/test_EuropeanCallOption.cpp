@@ -38,3 +38,13 @@ BOOST_AUTO_TEST_CASE(Monotony_Volatility)
 	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.03) <= c1.GetPrice(0.03, 0.01, 50.0, 0.06));
 	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.1) <= c1.GetPrice(0.03, 0.01, 50.0, 0.4));
 }
+
+BOOST_AUTO_TEST_CASE(Monotony_Expiration)
+//If d=0 the price of a call should be increasing with the expiration date T
+{
+	EuropeanCallOption c1 (30.0, 10.0);
+	EuropeanCallOption c2 (30.0, 20.0);
+	EuropeanCallOption c3 (30.0, 30.0);
+	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.0) <= c2.GetPrice(0.03, 0.01, 50.0, 0.0));
+	BOOST_CHECK(c2.GetPrice(0.03, 0.01, 50.0, 0.0) <= c3.GetPrice(0.03, 0.01, 50.0, 0.0));
+}
