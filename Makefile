@@ -69,9 +69,9 @@ test_MonteCarlo.o: test/test_MonteCarlo.cpp MonteCarlo.o Random.o EuropeanCallOp
 	$(CC) $(CPPFLAGS) test/test_MonteCarlo.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/MonteCarlo.o obj/Random.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/DigitalCallOption.o obj/DigitalPutOption.o
 	./$(TESTBINDIR)/$@
 
-test_PutCallParity.o:  test/test_PutCallParity.cpp EuropeanCallOption.o EuropeanPutOption.o Forward.o Random.o
+test_PutCallParity.o:  test/test_PutCallParity.cpp EuropeanCallOption.o EuropeanPutOption.o Forward.o DigitalCallOption.o DigitalPutOption.o Bond.o Random.o
 	mkdir -p $(TESTBINDIR)
-	$(CC) $(CPPFLAGS) test/test_PutCallParity.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/Forward.o obj/Random.o
+	$(CC) $(CPPFLAGS) test/test_PutCallParity.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/Forward.o obj/DigitalCallOption.o obj/DigitalPutOption.o obj/Bond.o obj/Random.o
 	./$(TESTBINDIR)/$@
 
 clean:
