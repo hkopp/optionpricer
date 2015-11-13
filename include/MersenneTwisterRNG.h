@@ -9,7 +9,6 @@ class MersenneTwisterRNG : public AbstractRNG
 {
     public:
 		MersenneTwisterRNG(unsigned int seed = 0);
-		~MersenneTwisterRNG();
 		void Reset();
 		double GetGaussian();
 	protected:

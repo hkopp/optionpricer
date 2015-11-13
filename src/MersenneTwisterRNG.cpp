@@ -7,11 +7,6 @@ MersenneTwisterRNG::MersenneTwisterRNG(unsigned int seed)
 {
 }
 
-MersenneTwisterRNG::~MersenneTwisterRNG()
-{
-	//TODO: delete this->mt and this->seed
-}
-
 void MersenneTwisterRNG::Reset()
 {
 	mt.seed(seed);
