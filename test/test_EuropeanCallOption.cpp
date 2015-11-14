@@ -3,6 +3,7 @@
 #include "../include/EuropeanCallOption.h"
 #include <boost/test/floating_point_comparison.hpp>
 #include <boost/test/unit_test.hpp>
+#include <cmath>
 
 EuropeanCallOption c (50.0, 10.0);
 
@@ -47,4 +48,15 @@ BOOST_AUTO_TEST_CASE(Monotony_Expiration)
 	EuropeanCallOption c3 (30.0, 30.0);
 	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.0) <= c2.GetPrice(0.03, 0.01, 50.0, 0.0));
 	BOOST_CHECK(c2.GetPrice(0.03, 0.01, 50.0, 0.0) <= c3.GetPrice(0.03, 0.01, 50.0, 0.0));
+}
+
+BOOST_AUTO_TEST_CASE(Rational_Bounds)
+//The price of a call option should be between the spot and spot-Ke^rT
+{
+	EuropeanCallOption c1 (30.0, 10.0);
+	BOOST_CHECK(50-30*std::exp(0.03*10.0) <= c1.GetPrice(0.03, 0.01, 50.0, 0.04));
+	BOOST_CHECK(c1.GetPrice(0.03, 0.01, 50.0, 0.04 <= 50));
+
+	BOOST_CHECK(100-30*std::exp(0.05*10.0) <= c1.GetPrice(0.05, 0.01, 100.0, 0.04));
+	BOOST_CHECK(c1.GetPrice(0.05, 0.01, 100.0, 0.04) <= 100);
 }
