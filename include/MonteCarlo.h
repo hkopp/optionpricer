@@ -2,6 +2,7 @@
 #define MONTECARLO_H
 
 #include "AbstractDerivative.h"
+#include "AbstractRNG.h"
 
 //! A class for Monte-Carlo simulation of option prices
 class MonteCarlo
@@ -21,7 +22,7 @@ class MonteCarlo
          * \param sigma The Volatility sigma
          * \return the price of the derivative computed with Monte Carlo method
          */
-        static double SimulatePrice(const AbstractDerivative& Derivative, unsigned int numberRuns, double rater, double dividend, double spot, double sigma);
+        static double SimulatePrice(const AbstractDerivative& Derivative, unsigned int numberRuns, double rater, double dividend, double spot, double sigma, AbstractRNG& RNG);
     protected:
     private:
 };
