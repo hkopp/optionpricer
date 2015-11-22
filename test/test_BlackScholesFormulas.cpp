@@ -4,33 +4,48 @@
 #include <boost/test/floating_point_comparison.hpp>
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(Monotony_Strike)
+BOOST_AUTO_TEST_CASE(EuropeanCall_Monotony_Strike)
 //The price of a call option should be monotonously decreasing with strike
 {
 	BOOST_CHECK(BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 20.0, 10.0) >= BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 30.0, 10.0));
 	BOOST_CHECK(BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 30.0, 10.0) >= BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0));
 	BOOST_CHECK(BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0) >= BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 50.0, 10.0));
+}
+
+BOOST_AUTO_TEST_CASE(DigitalCall_Monotony_Strike)
+//The price of a call option should be monotonously decreasing with strike
+{
+	BOOST_CHECK(BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 20.0, 10.0) >= BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 30.0, 10.0));
+	BOOST_CHECK(BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 30.0, 10.0) >= BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0));
+	BOOST_CHECK(BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0) >= BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 50.0, 10.0));
 	//EuropeanCallPrice(double rater, double dividend, double spot, double sigma, double strike, double expiry)
 }
 
-BOOST_AUTO_TEST_CASE(Monotony_Volatility)
+BOOST_AUTO_TEST_CASE(EuropeanCall_Monotony_Volatility)
 //The price of a call option should be monotonously increasing with volatility
 {
 	BOOST_CHECK(BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.4, 40.0, 10.0) <= BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.5, 40.0, 10.0));
 	BOOST_CHECK(BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.6, 40.0, 10.0) <= BlackScholesFormulas::EuropeanCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0));
 }
 
-BOOST_AUTO_TEST_CASE(Monotony_Expiration)
-//If d=0 the price of a call should be increasing with the expiration date T
+BOOST_AUTO_TEST_CASE(DigitalCall_Monotony_Volatility)
+//The price of a call option should be monotonously increasing with volatility
 {
-	double price1 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 10.0);
-	double price2 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 20.0);
-	double price3 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 30.0);
-	BOOST_CHECK(price1 <= price2);
-	BOOST_CHECK(price2 <= price3);
+	BOOST_CHECK(BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.4, 40.0, 10.0) <= BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.5, 40.0, 10.0));
+	BOOST_CHECK(BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.6, 40.0, 10.0) <= BlackScholesFormulas::DigitalCallPrice(0.04, 0.02, 10.0, 0.7, 40.0, 10.0));
 }
 
-BOOST_AUTO_TEST_CASE(Eurupean_Rational_Bounds)
+BOOST_AUTO_TEST_CASE(EuropeanCall_Monotony_Expiration)
+//If d=0 the price of a call should be increasing with the expiration date T
+{
+	double ecallprice1 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 10.0);
+	double ecallprice2 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 20.0);
+	double ecallprice3 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 30.0);
+	BOOST_CHECK(ecallprice1 <= ecallprice2);
+	BOOST_CHECK(ecallprice2 <= ecallprice3);
+}
+
+BOOST_AUTO_TEST_CASE(European_Rational_Bounds)
 //The price of a call option should be between the spot and spot-Ke^rT
 {
 	double callprice1 = BlackScholesFormulas::EuropeanCallPrice(0.03, 0.01, 50.0, 0.0, 30.0, 10.0);
