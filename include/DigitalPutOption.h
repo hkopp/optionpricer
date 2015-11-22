@@ -8,7 +8,6 @@ class DigitalPutOption : public AbstractDerivative
 {
     public:
 		DigitalPutOption(double strikeK, double expiryT);
-        double GetPrice(double rater, double dividend, double spot, double sigma) const;
         double Payoff(double currentspot) const;
         double GetExpiry() const;
     protected:
