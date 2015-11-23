@@ -13,9 +13,6 @@ class Random
 
         //! The cumulative normal function
         static double CumulativeNormal(double);
-
-        //! Returns a normally distributed random variable
-        static double GetGaussian(); //TODO: this should be deleted and an AbstractRNG used, where this is invoked now
     protected:
     private:
 };
