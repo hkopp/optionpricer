@@ -2,9 +2,8 @@
 #include <cmath>
 
 Bond::Bond(double facevalue_, double expiry_)
+:facevalue(facevalue_),expiry(expiry_)
 {
-    this->facevalue = facevalue_;
-    this->expiry = expiry_;
 }
 
 double Bond::Payoff() const

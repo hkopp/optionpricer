@@ -1,9 +1,8 @@
 #include "EuropeanPutOption.h"
 
 EuropeanPutOption::EuropeanPutOption(double strike_, double expiry_)
+:strike(strike_),expiry(expiry_)
 {
-    this->strike = strike_;
-    this->expiry = expiry_;
 }
 
 double EuropeanPutOption::Payoff(double currentspot) const

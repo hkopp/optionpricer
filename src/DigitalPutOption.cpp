@@ -1,9 +1,8 @@
 #include "DigitalPutOption.h"
 
 DigitalPutOption::DigitalPutOption(double strike_, double expiry_)
+:strike(strike_),expiry(expiry_)
 {
-    this->strike = strike_;
-    this->expiry = expiry_;
 }
 
 double DigitalPutOption::Payoff(double currentspot) const
