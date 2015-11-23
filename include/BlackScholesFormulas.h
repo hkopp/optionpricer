@@ -1,6 +1,13 @@
 #ifndef BLACKSCHOLESFORMULAS_H
 #define BLACKSCHOLESFORMULAS_H
 
+#include "EuropeanCallOption.h"
+#include "EuropeanPutOption.h"
+#include "Forward.h"
+#include "DigitalCallOption.h"
+#include "DigitalPutOption.h"
+#include "Bond.h"
+
 //! A class for analytic functions in the Black-Scholes model
 /*!
  * This class provides functions for computing the price of derivatives in the Black-Scholes model
@@ -17,18 +24,21 @@ class BlackScholesFormulas
     	 * \param sigma The Volatility sigma
     	 * \return the analytical price of the derivative
     	 */
-        static double EuropeanCallPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry);
+		static double GetPrice(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall);
 
-        //! The price of a european put option
-        static double EuropeanPutPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry);
+		//! The price of a european put option
+		static double GetPrice(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
 
         //! The price of a forward
-        static double ForwardPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry);
+        static double GetPrice(double rater, double dividend, double spot, double sigma, const Forward& forward);
 
-        static double DigitalCallPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry);
-        static double DigitalPutPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry);
+        //! Computes the price of a digital call option.
+        static double GetPrice(double rater, double dividend, double spot, double sigma, const DigitalCallOption& digitalcall);
+        //! Computes the price of a digital put option.
+        static double GetPrice(double rater, double dividend, double spot, double sigma, const DigitalPutOption& digitalput);
+
 		//! Computes the price of a bond.
-        static double BondPrice(double rater, double facevalue, double expiry);
+        static double GetPrice(double rater, const Bond& bond);
     protected:
     private:
 };

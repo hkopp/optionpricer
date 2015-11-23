@@ -8,13 +8,14 @@ class Forward : public AbstractDerivative
 {
     public:
         //! constructs a Forward with a strike price and expiry time
-        Forward(double strikeK, double expiryT);
+        Forward(double strike_, double expiry_);
         double Payoff(double currentspot) const;
         double GetExpiry() const;
+        double GetStrike() const;
     protected:
     private:
-        double strikeK;
-        double expiryT;
+        double strike;
+        double expiry;
 };
 
 #endif // FORWARD_H

@@ -7,13 +7,14 @@
 class DigitalPutOption : public AbstractDerivative
 {
     public:
-		DigitalPutOption(double strikeK, double expiryT);
+		DigitalPutOption(double strike_, double expiry_);
         double Payoff(double currentspot) const;
         double GetExpiry() const;
+        double GetStrike() const;
     protected:
     private:
-        double strikeK;
-        double expiryT;
+        double strike;
+        double expiry;
 };
 
 #endif // DigitalPutOption_H

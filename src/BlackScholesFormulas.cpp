@@ -1,44 +1,50 @@
 #include "BlackScholesFormulas.h"
+#include "EuropeanCallOption.h"
+#include "EuropeanPutOption.h"
+#include "Forward.h"
+#include "DigitalCallOption.h"
+#include "DigitalPutOption.h"
+#include "Bond.h"
 #include "Random.h"
 #include <cmath>
 
-double BlackScholesFormulas::EuropeanCallPrice(double rater, double dividend, double spot, double sigma, double strike, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
 {
 	//TODO: assert sigma != 0 && expiryT !=0
-	double d1=(std::log(spot/strike)+(rater-dividend+1/2*std::pow(sigma,2))*expiry)/(sigma*std::sqrt(expiry));
-	double d2=d1-sigma*std::sqrt(expiry);
+	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
+	double d2=d1-sigma*std::sqrt(europeancall.GetExpiry());
 	//	double d2=(std::log(spot/strike)+(rater-dividend-1/2*std::pow(sigma,2))*expiryT)/(sigma*std::sqrt(expiry));
-	return spot*std::exp(-dividend*expiry)*Random::CumulativeNormal(d1) - strike*std::exp(-rater*expiry)*Random::CumulativeNormal(d2);
+	return spot*std::exp(-dividend*europeancall.GetExpiry())*Random::CumulativeNormal(d1) - europeancall.GetStrike()*std::exp(-rater*europeancall.GetExpiry())*Random::CumulativeNormal(d2);
 }
 
-double BlackScholesFormulas::EuropeanPutPrice(double rater, double dividend, double spot, double sigma, double strike, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
 {
 	//TODO: assert sigma != 0 && expiryT !=0
-	double d1=(std::log(spot/strike)+(rater-dividend+1/2*std::pow(sigma,2))*expiry)/(sigma*std::sqrt(expiry));
-	double d2=d1-sigma*std::sqrt(expiry);
+	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
+	double d2=d1-sigma*std::sqrt(europeanput.GetExpiry());
 	//	double d2=(std::log(spot/strike)+(rater-dividend-1/2*std::pow(sigma,2))*expiryT)/(sigma*std::sqrt(expiry));
-	return spot*std::exp(-dividend*expiry)*Random::CumulativeNormal(-d1) - strike*std::exp(-rater*expiry)*Random::CumulativeNormal(-d2);
+	return spot*std::exp(-dividend*europeanput.GetExpiry())*Random::CumulativeNormal(-d1) - europeanput.GetStrike()*std::exp(-rater*europeanput.GetExpiry())*Random::CumulativeNormal(-d2);
 }
 
 
-double BlackScholesFormulas::ForwardPrice(double rater, double dividend, double spot, double sigma, double strike, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const Forward& forward)
 {
-    return std::exp(-rater*expiry)*(std::exp((rater-dividend)*expiry)*spot - strike);
+    return std::exp(-rater*forward.GetExpiry())*(std::exp((rater-dividend)*forward.GetExpiry())*spot - forward.GetStrike());
 }
 
-double BlackScholesFormulas::DigitalCallPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const DigitalCallOption& digitalcall)
 {
-	double d2=(std::log(spot/strike)+(rater-dividend-1/2*std::pow(sigma,2))*expiry)/(sigma*std::sqrt(expiry));
-	return std::exp(-rater*expiry)*Random::CumulativeNormal(d2);
+	double d2=(std::log(spot/digitalcall.GetStrike())+(rater-dividend-1/2*std::pow(sigma,2))*digitalcall.GetExpiry())/(sigma*std::sqrt(digitalcall.GetExpiry()));
+	return std::exp(-rater*digitalcall.GetExpiry())*Random::CumulativeNormal(d2);
 }
 
-double BlackScholesFormulas::DigitalPutPrice(double rater, double dividend, double spot, double sigma,  double strike, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const DigitalPutOption& digitalput)
 {
-	double d2=(std::log(spot/strike)+(rater-dividend-1/2*std::pow(sigma,2))*expiry)/(sigma*std::sqrt(expiry));
-	return std::exp(-rater*expiry)*Random::CumulativeNormal(-d2); //pricing in interest rates
+	double d2=(std::log(spot/digitalput.GetStrike())+(rater-dividend-1/2*std::pow(sigma,2))*digitalput.GetExpiry())/(sigma*std::sqrt(digitalput.GetExpiry()));
+	return std::exp(-rater*digitalput.GetExpiry())*Random::CumulativeNormal(-d2); //pricing in interest rates
 }
 
-double BlackScholesFormulas::BondPrice(double rater, double facevalue, double expiry)
+double BlackScholesFormulas::GetPrice(double rater, const Bond& bond)
 {
-	return facevalue*std::exp(-rater*expiry);
+	return bond.GetFacevalue()*std::exp(-rater*bond.GetExpiry());
 }

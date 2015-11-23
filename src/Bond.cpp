@@ -1,10 +1,10 @@
 #include "Bond.h"
 #include <cmath>
 
-Bond::Bond(double facevalue, double expiryT)
+Bond::Bond(double facevalue_, double expiry_)
 {
-    this->facevalue = facevalue;
-    this->expiryT = expiryT;
+    this->facevalue = facevalue_;
+    this->expiry = expiry_;
 }
 
 double Bond::Payoff() const
@@ -14,5 +14,9 @@ double Bond::Payoff() const
 
 double Bond::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double Bond::GetFacevalue() const
+{
+	return facevalue;
 }

@@ -1,17 +1,21 @@
 #include "EuropeanCallOption.h"
 
-EuropeanCallOption::EuropeanCallOption(double strikeK, double expiryT)
+EuropeanCallOption::EuropeanCallOption(double strike_, double expiry_)
 {
-    this->strikeK = strikeK;
-    this->expiryT = expiryT;
+    this->strike = strike_;
+    this->expiry = expiry_;
 }
 
 double EuropeanCallOption::Payoff(double currentspot) const
 {
-	return currentspot-strikeK > 0.0 ? currentspot-strikeK : 0;
+	return currentspot-strike > 0.0 ? currentspot-strike : 0;
 }
 
 double EuropeanCallOption::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double EuropeanCallOption::GetStrike() const
+{
+	return strike;
 }

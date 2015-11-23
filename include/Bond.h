@@ -14,10 +14,12 @@ class Bond
         double Payoff() const;
         //! Returns the expiry time.
         double GetExpiry() const;
+        //! Returns the face value.
+        double GetFacevalue() const;
     protected:
     private:
         double facevalue;
-        double expiryT;
+        double expiry;
 };
 
 #endif // BOND_H

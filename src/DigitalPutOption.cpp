@@ -1,18 +1,20 @@
 #include "DigitalPutOption.h"
-#include "Random.h"
-#include <cmath>
 
-DigitalPutOption::DigitalPutOption(double strikeK, double expiryT)
+DigitalPutOption::DigitalPutOption(double strike_, double expiry_)
 {
-    this->strikeK = strikeK;
-    this->expiryT = expiryT;
+    this->strike = strike_;
+    this->expiry = expiry_;
 }
 
 double DigitalPutOption::Payoff(double currentspot) const
 {
-    return currentspot > strikeK ? 0 : 1;
+    return currentspot > strike ? 0 : 1;
 }
 double DigitalPutOption::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double DigitalPutOption::GetStrike() const
+{
+	return strike;
 }

@@ -9,6 +9,7 @@ DigitalCallOption c (50.0, 10.0);
 BOOST_AUTO_TEST_CASE(Getters)
 {
 	BOOST_CHECK(c.GetExpiry() == 10.0);
+	BOOST_CHECK(c.GetStrike() == 50.0);
 }
 
 BOOST_AUTO_TEST_CASE(Trivial_Price)

@@ -1,10 +1,10 @@
 #include "Forward.h"
 #include <cmath>
 
-Forward::Forward(double strikeK, double expiryT)
+Forward::Forward(double strike_, double expiry_)
 {
-    this->strikeK = strikeK;
-    this->expiryT = expiryT;
+    this->strike = strike_;
+    this->expiry = expiry_;
 }
 
 double Forward::Payoff(double currentspot) const
@@ -13,5 +13,9 @@ double Forward::Payoff(double currentspot) const
 }
 double Forward::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double Forward::GetStrike() const
+{
+	return strike;
 }

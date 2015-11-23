@@ -1,19 +1,21 @@
 #include "EuropeanPutOption.h"
-#include "Random.h"
-#include <cmath>
 
-EuropeanPutOption::EuropeanPutOption(double strikeK, double expiryT)
+EuropeanPutOption::EuropeanPutOption(double strike_, double expiry_)
 {
-    this->strikeK = strikeK;
-    this->expiryT = expiryT;
+    this->strike = strike_;
+    this->expiry = expiry_;
 }
 
 double EuropeanPutOption::Payoff(double currentspot) const
 {
-	return currentspot > strikeK ? 0 : currentspot-strikeK;
+	return currentspot > strike ? 0 : currentspot-strike;
 }
 
 double EuropeanPutOption::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double EuropeanPutOption::GetStrike() const
+{
+	return strike;
 }

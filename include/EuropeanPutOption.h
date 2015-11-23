@@ -8,13 +8,14 @@ class EuropeanPutOption : public AbstractDerivative
 {
     public:
         //! constructs a European Put option with a strike price and expiry time
-        EuropeanPutOption(double strikeK, double expiryT);
+        EuropeanPutOption(double strike_, double expiry_);
         double Payoff(double currentspot) const;
         double GetExpiry() const;
+        double GetStrike() const;
     protected:
     private:
-        double strikeK;
-        double expiryT;
+        double strike;
+        double expiry;
 };
 
 #endif // EUROPEANPUTOPTION_H

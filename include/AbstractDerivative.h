@@ -20,6 +20,11 @@ class AbstractDerivative
          * \return the expiration time of the derivative
          */
         virtual double GetExpiry() const = 0;
+        //! The Strike of the derivative
+        /*!
+         * \return the strike price of the derivative
+         */
+        virtual double GetStrike() const = 0;
     protected:
     private:
 };

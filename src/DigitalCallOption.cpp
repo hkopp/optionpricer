@@ -1,18 +1,20 @@
 #include "DigitalCallOption.h"
-#include "Random.h"
-#include <cmath>
 
-DigitalCallOption::DigitalCallOption(double strikeK, double expiryT)
+DigitalCallOption::DigitalCallOption(double strike_, double expiry_)
 {
-    this->strikeK = strikeK;
-    this->expiryT = expiryT;
+    this->strike = strike_;
+    this->expiry = expiry_;
 }
 
 double DigitalCallOption::Payoff(double currentspot) const
 {
-    return currentspot > strikeK ? 1 : 0;
+    return currentspot > strike ? 1 : 0;
 }
 double DigitalCallOption::GetExpiry() const
 {
-	return expiryT;
+	return expiry;
+}
+double DigitalCallOption::GetStrike() const
+{
+	return strike;
 }

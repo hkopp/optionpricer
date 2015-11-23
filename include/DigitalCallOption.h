@@ -7,13 +7,14 @@
 class DigitalCallOption : public AbstractDerivative
 {
     public:
-		DigitalCallOption(double strikeK, double expiryT);
+		DigitalCallOption(double strike_, double expiry_);
         double Payoff(double currentspot) const;
         double GetExpiry() const;
+        double GetStrike() const;
     protected:
     private:
-        double strikeK;
-        double expiryT;
+        double strike;
+        double expiry;
 };
 
 #endif // DigitalCallOption_H
