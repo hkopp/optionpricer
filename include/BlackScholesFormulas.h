@@ -47,6 +47,12 @@ class BlackScholesFormulas
 		//! The delta of a european put option
 		static double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
 
+		//! The vega of a european call option
+		static double GetVega(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall);
+
+		//! The vega of a european put option
+		static double GetVega(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
+
     protected:
     private:
 };
