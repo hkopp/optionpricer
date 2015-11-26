@@ -11,8 +11,11 @@ class Random
 		//! The inverse cumulative normal function due to Moro
         static double MoroInverseCumulativeNormal(double);
 
-        //! The cumulative normal function
+        //! The cumulative standard normal function
         static double CumulativeNormal(double);
+
+        //! The probability density function of the standard normal distribution
+        static double PDFNormal(double);
     protected:
     private:
 };

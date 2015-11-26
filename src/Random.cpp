@@ -76,3 +76,9 @@ double Random::CumulativeNormal(double x)
         return 1-CumulativeNormal(-x);
     }
 }
+
+double Random::PDFNormal(double x)
+//The probability density function of the normal distribution
+{
+	return 1/(2*MATH_PI)*std::exp(-x*x/2);
+}
