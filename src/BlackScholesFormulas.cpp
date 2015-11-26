@@ -48,3 +48,15 @@ double BlackScholesFormulas::GetPrice(double rater, const Bond& bond)
 {
 	return bond.GetFacevalue()*std::exp(-rater*bond.GetExpiry());
 }
+
+double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+{
+	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
+	return Random::CumulativeNormal(d1);
+}
+
+double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+{
+	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
+	return Random::CumulativeNormal(d1) - 1;
+}

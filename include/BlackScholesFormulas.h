@@ -10,7 +10,7 @@
 
 //! A class for analytic functions in the Black-Scholes model
 /*!
- * This class provides functions for computing the price of derivatives in the Black-Scholes model
+ * This class provides functions for computing the price and other attributes of derivatives in the Black-Scholes model
  */
 class BlackScholesFormulas
 {
@@ -34,11 +34,19 @@ class BlackScholesFormulas
 
         //! Computes the price of a digital call option.
         static double GetPrice(double rater, double dividend, double spot, double sigma, const DigitalCallOption& digitalcall);
+
         //! Computes the price of a digital put option.
         static double GetPrice(double rater, double dividend, double spot, double sigma, const DigitalPutOption& digitalput);
 
 		//! Computes the price of a bond.
         static double GetPrice(double rater, const Bond& bond);
+
+		//! The delta of a european call option
+		static double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall);
+
+		//! The delta of a european put option
+		static double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
+
     protected:
     private:
 };
