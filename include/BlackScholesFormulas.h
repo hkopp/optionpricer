@@ -53,6 +53,17 @@ class BlackScholesFormulas
 		//! The vega of a european put option
 		static double GetVega(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
 
+		//! The theta of a european call option
+		static double GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall);
+
+		//! The theta of a european put option
+		static double GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
+
+		//! The rho of a european call option
+		static double GetRho(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall);
+
+		//! The rho of a european put option
+		static double GetRho(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput);
     protected:
     private:
 };
