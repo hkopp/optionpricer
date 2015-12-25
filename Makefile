@@ -67,6 +67,11 @@ test_DigitalCallOption.o: test/test_DigitalCallOption.cpp DigitalCallOption.o
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_DigitalCallOption.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/DigitalCallOption.o obj/Random.o
 	./$(TESTBINDIR)/$@
+	
+test_Bond.o: test/test_Bond.cpp Bond.o
+	mkdir -p $(TESTBINDIR)
+	$(CC) $(CPPFLAGS) test/test_Bond.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/Bond.o
+	./$(TESTBINDIR)/$@
 
 test_BlackScholesFormulas.o: test/test_BlackScholesFormulas.cpp BlackScholesFormulas.o Random.o EuropeanCallOption.o EuropeanPutOption.o DigitalCallOption.o DigitalPutOption.o Bond.o
 	mkdir -p $(TESTBINDIR)

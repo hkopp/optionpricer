@@ -6,11 +6,6 @@ Bond::Bond(double facevalue_, double expiry_)
 {
 }
 
-double Bond::Payoff() const
-{
-	return facevalue;
-}
-
 double Bond::GetExpiry() const
 {
 	return expiry;
