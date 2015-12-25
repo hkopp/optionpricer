@@ -81,3 +81,23 @@ BOOST_AUTO_TEST_CASE(Digital_Rational_Bounds)
 	BOOST_CHECK(0 <= callprice2);
 	BOOST_CHECK(callprice2 <= 1);
 }
+
+
+BOOST_AUTO_TEST_CASE(European_Trivial_Deltas)
+//Test the correct output of some simple deltas
+{
+	EuropeanCallOption call (50.0, 0.0);
+	BOOST_CHECK_CLOSE(BlackScholesFormulas::GetDelta(0.2, 0.1, 55, 0.3, call), 1.0, 0.00001);
+	BOOST_CHECK_CLOSE(BlackScholesFormulas::GetDelta(0.2, 0.1, 45, 0.3, call), 0.0, 0.00001);
+
+	EuropeanPutOption put (50.0, 0.0);
+	BOOST_CHECK_CLOSE(BlackScholesFormulas::GetDelta(0.2, 0.1, 55, 0.3, put), 0.0, 0.00001);
+	BOOST_CHECK_CLOSE(BlackScholesFormulas::GetDelta(0.2, 0.1, 45, 0.3, put), -1.0, 0.00001);
+}
+
+BOOST_AUTO_TEST_CASE(European_Trivial_Gammas)
+//Test the correct output of some simple gammas.
+{
+	EuropeanPutOption put (50.0, 20.0);
+	BOOST_CHECK_CLOSE(BlackScholesFormulas::GetDelta(0.0, 0.0, 50, 0.3, put), -0.5, 0.00001);
+}
