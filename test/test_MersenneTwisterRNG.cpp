@@ -5,14 +5,14 @@
 
 BOOST_AUTO_TEST_CASE(Deterministic)
 {
-	MersenneTwisterRNG m1 (5);
-	MersenneTwisterRNG m2 (5);
+	MersenneTwisterRNG m1;
+	MersenneTwisterRNG m2;
     BOOST_CHECK(m1.GetGaussian() == m2.GetGaussian());
 }
 
 BOOST_AUTO_TEST_CASE(Reset)
 {
-	MersenneTwisterRNG m1 (1);
+	MersenneTwisterRNG m1;
 	double random1 = m1.GetGaussian();
 	m1.Reset();
 	double random2 = m1.GetGaussian();
