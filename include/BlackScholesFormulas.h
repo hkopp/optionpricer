@@ -10,7 +10,7 @@
 
 //! A class for analytic functions in the Black-Scholes model
 /*!
- * This class provides functions for computing the price and other attributes of derivatives in the Black-Scholes model
+ * This class provides analytic functions for computing the price and the greeks of derivatives in the Black-Scholes model.
  */
 class BlackScholesFormulas
 {
