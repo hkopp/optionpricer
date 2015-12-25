@@ -48,13 +48,13 @@ double BlackScholesFormulas::GetPrice(double rater, const Bond& bond)
 	return bond.GetFacevalue()*std::exp(-rater*bond.GetExpiry());
 }
 
-double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+double BlackScholesFormulas::GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
 {
 	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
 	return Random::CumulativeNormal(d1);
 }
 
-double GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+double BlackScholesFormulas::GetDelta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
 {
 	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
 	return Random::CumulativeNormal(d1) - 1;
@@ -66,13 +66,13 @@ double GetVega(double rater, double dividend, double spot, double sigma, const E
 	return spot*Random::PDFNormal(d1)*std::sqrt(europeancall.GetExpiry());
 }
 
-double GetVega(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+double BlackScholesFormulas::GetVega(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
 {
 	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
 	return spot*Random::PDFNormal(d1)*std::sqrt(europeanput.GetExpiry());
 }
 
-double GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+double BlackScholesFormulas::GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
 {
 	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
 	double d2=d1-sigma*std::sqrt(europeancall.GetExpiry());
@@ -81,7 +81,7 @@ double GetTheta(double rater, double dividend, double spot, double sigma, const 
 	return -spot*Random::PDFNormal(d1)*sigma/(2*std::sqrt(T)) - rater*K*std::exp(-rater*K)*Random::CumulativeNormal(d2);
 }
 
-double GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+double BlackScholesFormulas::GetTheta(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
 {
 	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
 	double d2=d1-sigma*std::sqrt(europeanput.GetExpiry());
@@ -91,13 +91,13 @@ double GetTheta(double rater, double dividend, double spot, double sigma, const 
 
 }
 
-double GetRho(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+double BlackScholesFormulas::GetRho(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
 {
 	double d2=(std::log(spot/europeancall.GetStrike())+(rater-dividend-1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
 	return europeancall.GetStrike()*europeancall.GetExpiry()*std::exp(-rater*europeancall.GetExpiry())*Random::CumulativeNormal(d2);
 }
 
-double GetRho(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+double BlackScholesFormulas::GetRho(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
 {
 	double d2=(std::log(spot/europeanput.GetStrike())+(rater-dividend-1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
 	return -europeanput.GetStrike()*europeanput.GetExpiry()*std::exp(-rater*europeanput.GetExpiry())*Random::CumulativeNormal(-d2);
