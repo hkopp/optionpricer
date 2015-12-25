@@ -2,5 +2,3 @@ compute greeks with finite differences and write testcases to check
 with analytical BlackScholes formulas
 
 implement antithetic variates as decorator
-
-write tests for bond
