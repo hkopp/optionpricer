@@ -60,7 +60,19 @@ double BlackScholesFormulas::GetDelta(double rater, double dividend, double spot
 	return Random::CumulativeNormal(d1) - 1;
 }
 
-double GetVega(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+double BlackScholesFormulas::GetGamma(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
+{
+	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
+	return Random::PDFNormal(d1)/(spot*sigma*std::sqrt(europeancall.GetExpiry()));
+}
+
+double BlackScholesFormulas::GetGamma(double rater, double dividend, double spot, double sigma, const EuropeanPutOption& europeanput)
+{
+	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
+	return Random::PDFNormal(d1)/(spot*sigma*std::sqrt(europeanput.GetExpiry()));
+}
+
+double BlackScholesFormulas::GetVega(double rater, double dividend, double spot, double sigma, const EuropeanCallOption& europeancall)
 {
 	double d1=(std::log(spot/europeancall.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeancall.GetExpiry())/(sigma*std::sqrt(europeancall.GetExpiry()));
 	return spot*Random::PDFNormal(d1)*std::sqrt(europeancall.GetExpiry());
