@@ -1,5 +1,5 @@
 all: main.o doc tests
-tests: test_Forward.o test_EuropeanCallOption.o test_DigitalCallOption.o test_MonteCarlo.o test_PutCallParity.o test_MersenneTwisterRNG.o test_BlackScholesFormulas.o
+tests: test_Forward.o test_EuropeanCallOption.o test_DigitalCallOption.o test_MonteCarlo.o test_PutCallParity.o test_MersenneTwisterRNG.o test_BlackScholesFormulas.o test_FiniteDifferences.o
 
 CC=g++
 CPPFLAGS=-Wall -Iinclude -std=c++11
@@ -41,6 +41,10 @@ BlackScholesFormulas.o: $(SRCDIR)/BlackScholesFormulas.cpp EuropeanCallOption.o 
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/BlackScholesFormulas.cpp -o obj/$@
 
+FiniteDifferences.o: $(SRCDIR)/FiniteDifferences.cpp BlackScholesFormulas.o
+	mkdir -p obj
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/FiniteDifferences.cpp -o obj/$@ obj/BlackScholesFormulas.o
+
 MersenneTwisterRNG.o: $(SRCDIR)/MersenneTwisterRNG.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MersenneTwisterRNG.cpp -o obj/$@
@@ -76,6 +80,11 @@ test_Bond.o: test/test_Bond.cpp Bond.o
 test_BlackScholesFormulas.o: test/test_BlackScholesFormulas.cpp BlackScholesFormulas.o Random.o EuropeanCallOption.o EuropeanPutOption.o DigitalCallOption.o DigitalPutOption.o Bond.o
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_BlackScholesFormulas.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/BlackScholesFormulas.o obj/Random.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/DigitalCallOption.o obj/DigitalPutOption.o obj/Bond.o
+	./$(TESTBINDIR)/$@
+
+test_FiniteDifferences.o: test/test_FiniteDifferences.cpp FiniteDifferences.o EuropeanCallOption.o EuropeanPutOption.o BlackScholesFormulas.o Random.o Bond.o
+	mkdir -p $(TESTBINDIR)
+	$(CC) $(CPPFLAGS) test/test_FiniteDifferences.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/FiniteDifferences.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/BlackScholesFormulas.o obj/Random.o obj/Bond.o
 	./$(TESTBINDIR)/$@
 
 test_MonteCarlo.o: test/test_MonteCarlo.cpp MonteCarlo.o Random.o EuropeanCallOption.o EuropeanPutOption.o DigitalCallOption.o DigitalPutOption.o Bond.o MersenneTwisterRNG.o BlackScholesFormulas.o
