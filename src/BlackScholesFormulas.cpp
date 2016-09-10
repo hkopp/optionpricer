@@ -23,7 +23,7 @@ double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot
 	double d1=(std::log(spot/europeanput.GetStrike())+(rater-dividend+1/2*std::pow(sigma,2))*europeanput.GetExpiry())/(sigma*std::sqrt(europeanput.GetExpiry()));
 	double d2=d1-sigma*std::sqrt(europeanput.GetExpiry());
 	//	double d2=(std::log(spot/strike)+(rater-dividend-1/2*std::pow(sigma,2))*expiryT)/(sigma*std::sqrt(expiry));
-	return spot*std::exp(-dividend*europeanput.GetExpiry())*Random::CumulativeNormal(-d1) - europeanput.GetStrike()*std::exp(-rater*europeanput.GetExpiry())*Random::CumulativeNormal(-d2);
+	return -spot*std::exp(-dividend*europeanput.GetExpiry())*Random::CumulativeNormal(-d1) + europeanput.GetStrike()*std::exp(-rater*europeanput.GetExpiry())*Random::CumulativeNormal(-d2);
 }
 
 double BlackScholesFormulas::GetPrice(double rater, double dividend, double spot, double sigma, const Forward& forward)
