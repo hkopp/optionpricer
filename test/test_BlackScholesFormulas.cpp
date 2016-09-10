@@ -3,6 +3,7 @@
 #include "../include/BlackScholesFormulas.h"
 #include <boost/test/floating_point_comparison.hpp>
 #include <boost/test/unit_test.hpp>
+#include <cmath>
 
 BOOST_AUTO_TEST_CASE(EuropeanCall_Monotony_Strike)
 //The price of a call option should be monotonously decreasing with strike
