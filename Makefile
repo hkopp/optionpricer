@@ -41,10 +41,6 @@ BlackScholesFormulas.o: $(SRCDIR)/BlackScholesFormulas.cpp EuropeanCallOption.o 
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/BlackScholesFormulas.cpp -o obj/$@
 
-FiniteDifferences.o: $(SRCDIR)/FiniteDifferences.cpp BlackScholesFormulas.o
-	mkdir -p obj
-	$(CC) $(CPPFLAGS) -c $(SRCDIR)/FiniteDifferences.cpp -o obj/$@ obj/BlackScholesFormulas.o
-
 MersenneTwisterRNG.o: $(SRCDIR)/MersenneTwisterRNG.cpp
 	mkdir -p obj
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/MersenneTwisterRNG.cpp -o obj/$@
@@ -82,7 +78,7 @@ test_BlackScholesFormulas.o: test/test_BlackScholesFormulas.cpp BlackScholesForm
 	$(CC) $(CPPFLAGS) test/test_BlackScholesFormulas.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/BlackScholesFormulas.o obj/Random.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/DigitalCallOption.o obj/DigitalPutOption.o obj/Bond.o
 	./$(TESTBINDIR)/$@
 
-test_FiniteDifferences.o: test/test_FiniteDifferences.cpp FiniteDifferences.o EuropeanCallOption.o EuropeanPutOption.o BlackScholesFormulas.o Random.o Bond.o
+test_FiniteDifferences.o: test/test_FiniteDifferences.cpp EuropeanCallOption.o EuropeanPutOption.o BlackScholesFormulas.o Random.o Bond.o
 	mkdir -p $(TESTBINDIR)
 	$(CC) $(CPPFLAGS) test/test_FiniteDifferences.cpp -o $(TESTBINDIR)/$@ -lboost_unit_test_framework obj/FiniteDifferences.o obj/EuropeanCallOption.o obj/EuropeanPutOption.o obj/BlackScholesFormulas.o obj/Random.o obj/Bond.o
 	./$(TESTBINDIR)/$@

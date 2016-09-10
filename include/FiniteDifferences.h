@@ -2,6 +2,7 @@
 #define FINITEDIFFERENCES_H
 
 #include "AbstractDerivative.h"
+#include "BlackScholesFormulas.h"
 
 //! A class for computing the Greeks of Derivatives with finite differences. We are using central differences and the analytical prices of derivatives.
 template <class Derivative_Type>
@@ -20,7 +21,13 @@ class FiniteDifferences
          * \param epsilon The size of the approximation interval
          * \return the Delta of the derivative computed with a central difference
          */
-        static double Delta(Derivative_Type Derivative, double rater, double dividend, double spot, double sigma, double epsilon);
+        static double Delta(Derivative_Type Derivative, double rater, double dividend, double spot, double sigma, double epsilon)
+        {
+        	double price_left = BlackScholesFormulas::GetPrice(rater, dividend, spot-epsilon, sigma, Derivative);
+        	double price_right= BlackScholesFormulas::GetPrice(rater, dividend, spot+epsilon, sigma, Derivative);
+        	return (price_right-price_left)/(2*epsilon);
+        }
+
         //TODO: gamma, vega, theta, rho
     protected:
     private:
