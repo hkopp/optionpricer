@@ -7,7 +7,7 @@ EuropeanPutOption::EuropeanPutOption(double strike_, double expiry_)
 
 double EuropeanPutOption::Payoff(double currentspot) const
 {
-	return currentspot > strike ? 0 : currentspot-strike;
+	return currentspot > strike ? 0 : strike-currentspot;
 }
 
 double EuropeanPutOption::GetExpiry() const
