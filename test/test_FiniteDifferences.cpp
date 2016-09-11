@@ -17,3 +17,18 @@ BOOST_AUTO_TEST_CASE(FD_European_Trivial_Deltas)
 	BOOST_CHECK_CLOSE(FiniteDifferences<EuropeanPutOption>::Delta(put, 0.2, 0.1, 55.0, 0.3, 0.0001), 0.0, 0.00001);
 	BOOST_CHECK_CLOSE(FiniteDifferences<EuropeanPutOption>::Delta(put, 0.2, 0.1, 45.0, 0.3, 0.0001), -1.0, 0.00001);
 }
+BOOST_AUTO_TEST_CASE(FD_European_Vegas)
+//Test the correct output of some vegas, vega is the same for puts and calls
+{
+	EuropeanCallOption call (50.0, 20.0);
+	EuropeanPutOption put (50.0, 20.0);
+	BOOST_CHECK_CLOSE(
+			FiniteDifferences<EuropeanCallOption>::Vega(call, 0.2, 0.1, 45.0, 0.3, 0.0001),
+			FiniteDifferences<EuropeanPutOption>::Vega(put, 0.2, 0.1, 45.0, 0.3, 0.0001),
+			0.00001);
+	BOOST_CHECK_CLOSE(
+			FiniteDifferences<EuropeanCallOption>::Vega(call, 0.2, 0.1, 55.0, 0.3, 0.0001),
+			FiniteDifferences<EuropeanPutOption>::Vega(put, 0.2, 0.1, 55.0, 0.3, 0.0001),
+			0.00001);
+
+}
